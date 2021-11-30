@@ -96,25 +96,25 @@
 </section>
 @endsection
 
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-<script type="text/javascript">
+{{--<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
+{{--<meta name="csrf-token" content="{{ csrf_token() }}" />--}}
+{{--<script type="text/javascript">--}}
 
-    $('#check_email').click(function(e){
-        e.preventDefault();
+{{--    $('#check_email').click(function(e){--}}
+{{--        e.preventDefault();--}}
 
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            type: 'post',
-            url: '/email_multiple',
-            dataType: 'json',
-            data: {'user_email':'user_email'},
-            success: function(data) {
-                alert('success');
-            },
-            error: function(data) {
-                alert('fail');
-            }
-        });
-    });
-</script>
+{{--        $.ajax({--}}
+{{--            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},--}}
+{{--            type: 'post',--}}
+{{--            url: '/email_multiple',--}}
+{{--            dataType: 'json',--}}
+{{--            data: {'user_email':'user_email'},--}}
+{{--            success: function(data) {--}}
+{{--                alert('success');--}}
+{{--            },--}}
+{{--            error: function(data) {--}}
+{{--                alert('fail');--}}
+{{--            }--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}

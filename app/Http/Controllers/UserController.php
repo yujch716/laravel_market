@@ -56,6 +56,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //회원가입
     public function join_ok(Request $request)
     {
         request()->validate([
@@ -99,13 +100,15 @@ class UserController extends Controller
         $email = User::where('user_email', request('user_email'))->exists();
 
         if($email == 0){
-            return redirect()->back()->with('alert','존재하지 않는 이메일입니다.');
+            echo "<script>alert('존재하지 않는 이메일입니다.');</script>";
+            return view('login');
 
         } else{
             $pw = User::where('user_pw', request('user_pw'))->exists();
 
-            if($pw == 0){
-                return redirect()->back()->with('alert','아이디나 비밀번호를 다시 확인해주세요');
+            if($pw == 0){\
+                echo "<script>alert('아이디나 비밀번호를 다시 확인해주세요');</script>";
+                return view('login');
             }else{
                 $name = User::where('user_email', request('user_email'))->value('user_name');
 
