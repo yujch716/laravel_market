@@ -106,7 +106,7 @@ class UserController extends Controller
         } else{
             $pw = User::where('user_pw', request('user_pw'))->exists();
 
-            if($pw == 0){\
+            if($pw == 0){
                 echo "<script>alert('아이디나 비밀번호를 다시 확인해주세요');</script>";
                 return view('login');
             }else{
