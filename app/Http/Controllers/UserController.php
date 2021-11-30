@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 use function redirect;
 use function request;
 use function view;
@@ -68,6 +71,7 @@ class UserController extends Controller
             'user_addr' => 'required|min:1'
         ]);
 
+        $lock_user_pw = Hash::make(request('user_pw'),["rounds"=>12]);
         $now = date("Y-m-d h:i:s");
 
         //$email = User::select('user_email',request('user_email'))->first();
@@ -78,7 +82,7 @@ class UserController extends Controller
         }else{
             User::create([
                 'user_email' => request('user_email'),
-                'user_pw' => request('user_pw'),
+                'user_pw' => $lock_user_pw,
                 'user_name' => request('user_name'),
                 'user_tel' => request('user_tel'),
                 'user_addr' => request('user_addr'),
@@ -97,16 +101,16 @@ class UserController extends Controller
             'user_pw' => 'required|min:8|max:30'
         ]);
 
-        $email = User::where('user_email', request('user_email'))->exists();
+        //$email = User::where('user_email', request('user_email'))->exists();
 
-        if($email == 0){
+        if(!User::where('user_email', request('user_email'))->exists()){
             echo "<script>alert('존재하지 않는 이메일입니다.');</script>";
             return view('login');
 
         } else{
-            $pw = User::where('user_pw', request('user_pw'))->exists();
+            $pw = User::where('user_email', request('user_email'))->value('user_pw');
 
-            if($pw == 0){
+            if(!Hash::check(request('user_pw'),$pw)){
                 echo "<script>alert('아이디나 비밀번호를 다시 확인해주세요');</script>";
                 return view('login');
             }else{
