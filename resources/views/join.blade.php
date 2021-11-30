@@ -47,7 +47,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1>Join</h1> <br>
-            <form>
+            <form method="POST" action="/join_ok">
                 @csrf
                 <table>
                     <tr>

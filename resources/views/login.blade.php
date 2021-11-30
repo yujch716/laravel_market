@@ -32,6 +32,10 @@
             border: 1px;
             padding: 5px;
         }
+        a{
+            text-decoration: none;
+            color: white;
+        }
     </style>
 <!-- Section-->
 <section class="bg-dark py-5">
@@ -52,6 +56,15 @@
                     </tr>
                 </table>
             </form>
+
+            <br>
+            <table>
+                <tr>
+                    <td><a href="#">아이디 찾기</a></td>
+                    <td> | </td>
+                    <td><a href="#">비밀번호 찾기</a></td>
+                </tr>
+            </table>
 
             @if ($errors->any())
                 <div class="alert alert-danger">
