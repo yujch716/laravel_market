@@ -51,8 +51,8 @@
                 @csrf
                 <table>
                     <tr>
-                        <td>Email</td>
-                        <td><input type="text" name="user_email" id="user_email"></td>
+                        <td>ID</td>
+                        <td><input type="text" name="user_id" id="user_id"></td>
                         <td><button id="check_email">중복확인</button></td>
                     </tr>
                     <tr>
@@ -66,6 +66,10 @@
                     <tr>
                         <td>Name</td>
                         <td><input type="text" name="user_name" id="user_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" name="user_email" id="user_email"></td>
                     </tr>
                     <tr>
                         <td>Tel</td>

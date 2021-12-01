@@ -47,7 +47,7 @@
                 <table style="margin-left: auto; margin-right: auto">
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" name="user_email" id="user_email"></td>
+                        <td><input type="text" name="user_id" id="user_id"></td>
                         <td rowspan="2"><button style="height: 80px">Login</button></td>
                     </tr>
                     <tr>
@@ -60,9 +60,9 @@
             <br>
             <table>
                 <tr>
-                    <td><a href="#">아이디 찾기</a></td>
+                    <td><a href="/find_id">아이디 찾기</a></td>
                     <td> | </td>
-                    <td><a href="#">비밀번호 찾기</a></td>
+                    <td><a href="find_pw">비밀번호 찾기</a></td>
                 </tr>
             </table>
 
