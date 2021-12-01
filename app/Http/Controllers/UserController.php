@@ -39,13 +39,13 @@ class UserController extends Controller
     public function email_multiple(Request $request)
     {
         request()->validate([
-            'user_email' => 'required|email|min:1|max:20'
+            'user_id' => 'required|min:1|max:20'
         ]);
 
-        $email = User::where('user_email',request('user_email'))->exists();
+        $email = User::where('user_id',request('user_id'))->exists();
 
         if($email == 1){
-            return redirect()->back()->with('alert','중복된 이메일 입니다');
+            return redirect()->back()->with('alert','중복된 아이디입니다');
         } else{
             return redirect('/join');
         }
@@ -63,10 +63,11 @@ class UserController extends Controller
     public function join_ok(Request $request)
     {
         request()->validate([
-            'user_email' => 'required|email|min:1|max:20',
+            'user_id' => 'required|min:1|max:20',
             'user_pw' => 'required|min:8|max:30',
             'user_pw_ok' => 'required|min:8|max:30',
             'user_name' => 'required|min:1|max:20',
+            'user_email' => 'required|email|min:1|max:20',
             'user_tel' => 'required|min:1|max:13',
             'user_addr' => 'required|min:1'
         ]);
@@ -81,9 +82,10 @@ class UserController extends Controller
             return redirect()->back()->with('alert','비밀번호가 일치하지 않습니다.');
         }else{
             User::create([
-                'user_email' => request('user_email'),
+                'user_id' => request('user_id'),
                 'user_pw' => $lock_user_pw,
                 'user_name' => request('user_name'),
+                'user_email' => request('user_email'),
                 'user_tel' => request('user_tel'),
                 'user_addr' => request('user_addr'),
                 'user_created' => $now
@@ -94,27 +96,29 @@ class UserController extends Controller
 
     }
 
+
+    //로그인
     public function login_ok(Request $request)
     {
         request() -> validate([
-            'user_email' => 'required|email|min:1|max:20',
+            'user_id' => 'required|min:1|max:20',
             'user_pw' => 'required|min:8|max:30'
         ]);
 
         //$email = User::where('user_email', request('user_email'))->exists();
 
-        if(!User::where('user_email', request('user_email'))->exists()){
-            echo "<script>alert('존재하지 않는 이메일입니다.');</script>";
+        if(!User::where('user_id', request('user_id'))->exists()){
+            echo "<script>alert('존재하지 않는 아이디입니다.');</script>";
             return view('login');
 
         } else{
-            $pw = User::where('user_email', request('user_email'))->value('user_pw');
+            $pw = User::where('user_id', request('user_id'))->value('user_pw');
 
             if(!Hash::check(request('user_pw'),$pw)){
                 echo "<script>alert('아이디나 비밀번호를 다시 확인해주세요');</script>";
                 return view('login');
             }else{
-                $name = User::where('user_email', request('user_email'))->value('user_name');
+                $name = User::where('user_id', request('user_id'))->value('user_name');
 
                 $user_name = session('$name');
                 $request->session()->put('key',$name);
@@ -124,11 +128,18 @@ class UserController extends Controller
 
     }
 
-
+    //로그아웃
     public function logout(Request $request)
     {
         $request->session()->forget('key');
         return view('index');
+    }
+
+
+    //아이디 찾기
+    public function find_email()
+    {
+        return view('find_email');
     }
 
     /**
