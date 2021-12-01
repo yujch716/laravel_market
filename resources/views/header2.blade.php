@@ -33,8 +33,8 @@
                     </ul>
                 </li>
             </ul>
-            @if(session('key'))
-                <div>{{session(['key' => 'value'])}}</div>
+            @if(session(key))
+{{--                <div>{{session()}} 님</div>--}}
                 <a href="/logout" class="btn btn-outline-dark" style="margin: 5px">Logout</a>
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" style="margin: 5px" type="submit">
