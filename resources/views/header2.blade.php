@@ -35,36 +35,36 @@
             </ul>
             <a href="/login" class="btn btn-outline-dark" style="margin: 5px">Login</a>
             <a href="/join" class="btn btn-outline-dark" style="margin: 5px">Join</a>
-            <form class="d-flex">
-                <button class="btn btn-outline-dark" style="margin: 5px" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
-            </form>
-{{--            --}}
-{{--            @if(session(key))--}}
-{{--                <div>{{session()}} 님</div>--}}
-{{--                <a href="/logout" class="btn btn-outline-dark" style="margin: 5px">Logout</a>--}}
-{{--                <form class="d-flex">--}}
-{{--                    <button class="btn btn-outline-dark" style="margin: 5px" type="submit">--}}
-{{--                        <i class="bi-cart-fill me-1"></i>--}}
-{{--                        Cart--}}
-{{--                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>--}}
-{{--                    </button>--}}
-{{--                </form>--}}
-{{--            @else--}}
-{{--                <a href="/login" class="btn btn-outline-dark" style="margin: 5px">Login</a>--}}
-{{--                <a href="/join" class="btn btn-outline-dark" style="margin: 5px">Join</a>--}}
-{{--                <form class="d-flex">--}}
-{{--                    <button class="btn btn-outline-dark" style="margin: 5px" type="submit">--}}
-{{--                        <i class="bi-cart-fill me-1"></i>--}}
-{{--                        Cart--}}
-{{--                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>--}}
-{{--                    </button>--}}
-{{--                </form>--}}
-{{--            @endif--}}
-{{--            --}}
+{{--            <form class="d-flex">--}}
+{{--                <button class="btn btn-outline-dark" style="margin: 5px" type="submit">--}}
+{{--                    <i class="bi-cart-fill me-1"></i>--}}
+{{--                    Cart--}}
+{{--                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>--}}
+{{--                </button>--}}
+{{--            </form>--}}
+
+            @if(session('key'))
+                <div>{{session(['key' => 'value'])}}</div>
+                <a href="/logout" class="btn btn-outline-dark" style="margin: 5px">Logout</a>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" style="margin: 5px" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            @else
+                <a href="/login" class="btn btn-outline-dark" style="margin: 5px">Login</a>
+                <a href="/join" class="btn btn-outline-dark" style="margin: 5px">Join</a>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" style="margin: 5px" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            @endif
+
         </div>
     </div>
 </nav>
