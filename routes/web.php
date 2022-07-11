@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test2', function () {		//uri가 /test2 일 때,
+    return view('welcome');		//views/a/test2를 보여주고, 'name'안에는 '이름이름'을 넣어라
+});
+
+
 Route::get('/', function () {
     return view('index');
 });
